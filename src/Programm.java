@@ -171,7 +171,7 @@ try {
 		
 	public Programm(){
 		kalender=new DualisKalender();
-		String username="a10023@hb.dhbw-stuttgart.de";
+		String username="*********";
 		String passwort;
 		
 		String args;
