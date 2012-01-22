@@ -11,6 +11,8 @@ import Kalender.VorlesungsTermin;
  * @author Andreas
  */
 public interface FormView {
-	public void display(TextInput input);
+	public void add(TextInput input);
+	public void display(Form f);
+	public void addSubmitListener(FormSubmitListener onSubmit);
 }
 

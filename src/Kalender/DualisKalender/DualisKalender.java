@@ -124,7 +124,7 @@ public class DualisKalender implements Kalender {
 	 * Stellt das Formular, bestehend aus 2 Eingabefeldern für Benutzername und Passwort, her.
 	 */
 	public Form getFormular() {
-		Form f = new Form();
+		Form f = new Form(this);
 		TextInput name = new TextInput("name");
 		name.setPrompt("Dualis-Benutzername");
 		f.add(name);

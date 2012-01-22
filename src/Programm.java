@@ -1,6 +1,8 @@
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -46,7 +48,9 @@ import com.gargoylesoftware.htmlunit.html.HtmlTableCell;
 import com.gargoylesoftware.htmlunit.html.HtmlTableRow;
 
 import form.Form;
+import form.FormSubmitListener;
 import form.TextInput;
+import grafischeDarstellung.KalenderGUI;
 
 import Kalender.Kalender;
 import Kalender.VorlesungsTermin;
@@ -65,8 +69,9 @@ public class Programm{
 	public static final String ROTTENBURG_KALENDER_REGEXP = "";
 	private static final String FORMULAR_FENSTERNAMEN = "Fenster";
 	private static final String PROG_NAME = "Kalender-Manager";
-	
+	private KalenderGUI window;
 	public ArrayList<VorlesungsTermin> vorlesungen;
+	private ArrayList<Kalender> usedKalenders;
 	
 	private Kalender kalender;
 
@@ -79,11 +84,24 @@ public class Programm{
 	public Programm(){
 		//JFrame fenster=createMainWindow();
 		
-		GUIforPC window = new GUIforPC(FORMULAR_FENSTERNAMEN);
+		window = new GUIforPC(FORMULAR_FENSTERNAMEN); // das Hauptfenster
+		usedKalenders = new ArrayList<Kalender>();
 		//setToFormSubmitWindow(window);
 		DualisKalender kal = new DualisKalender();
+		usedKalenders.add(kal);
+		kalenderAnmelden(kal);
+	}
+	
+	class OnSubmit implements FormSubmitListener {
+		public void submit(Form f) {
+			
+		}
+    } 
+	
+	public void kalenderAnmelden(Kalender kal){
 		Form f = kal.getFormular();
-		//f.display(window);
+		window.display(f);
+		window.addSubmitListener(new OnSubmit());
 	}
 	
 	private JFrame createMainWindow(){
